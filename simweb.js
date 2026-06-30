@@ -184,6 +184,29 @@
     iframe.srcdoc = safe;
   }
 
+  // ---------- supabase Edge Function call ----------
+  // Streams the request body straight back as a fetch Response so
+  // SSE pipelines work without going through supabase-js's JSON-only
+  // `functions.invoke` parser.
+  async function invokeFunction(name, body, opts = {}) {
+    const sb = client();
+    const { data } = await sb.auth.getSession();
+    const token = data?.session?.access_token;
+    const url = (window.SUPABASE_URL || "").replace(/\/+$/, "") + "/functions/v1/" + name;
+    const resp = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token || window.SUPABASE_ANON_KEY}`,
+        "apikey": window.SUPABASE_ANON_KEY,
+        "Content-Type": "application/json",
+        ...(opts.headers || {}),
+      },
+      body: body == null ? undefined : JSON.stringify(body),
+      signal: opts.signal,
+    });
+    return resp;
+  }
+
   // ---------- public api ----------
   window.simwebApi = {
     client, me, isAuthed, signOut,
@@ -201,3 +224,5 @@
     client();
   }
 })();
+
+// cache-bust build: 2026-06-30T16:06:42Z
