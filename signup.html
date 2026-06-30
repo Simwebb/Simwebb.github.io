@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up — simweb</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237c5cff'/%3E%3C/svg%3E" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' data:; connect-src 'self' https://*.supabase.co; font-src 'self' data:;">
+</head>
+<body>
+  <header id="topnav" class="topnav"></header>
+  <main class="page">
+    <div class="auth-wrap">
+      <form class="auth-card" id="signupForm" novalidate>
+        <h1 class="title">Create your <span style="background:linear-gradient(90deg,#7c5cff,#00d4ff);-webkit-background-clip:text;background-clip:text;color:transparent">simweb</span></h1>
+        <p class="sub">Email + username — pick a name no one's taken yet.</p>
+
+        <div class="field">
+          <label class="label" for="su_email">Email</label>
+          <input class="input" id="su_email" type="email" name="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label class="label" for="su_username">Username</label>
+          <input class="input" id="su_username" type="text" name="username" autocomplete="username" placeholder="3-24 chars, [a-z0-9_]" required minlength="3" maxlength="24" pattern="^[a-z0-9_]{3,24}$" />
+          <span class="help" id="su_username_help">Lowercase letters, digits, underscores.</span>
+        </div>
+        <div class="field">
+          <label class="label" for="su_display">Display name (optional)</label>
+          <input class="input" id="su_display" type="text" name="display_name" placeholder="Shown next to your projects" />
+        </div>
+        <div class="field">
+          <label class="label" for="su_password">Password</label>
+          <input class="input" id="su_password" type="password" name="password" autocomplete="new-password" required minlength="6" />
+        </div>
+
+        <div class="btn-row">
+          <button class="btn primary btn-block" id="submitBtn" type="submit">Create account</button>
+        </div>
+        <p class="help err" id="errMsg" hidden></p>
+        <p class="swap">Already have an account? <a href="login.html">Log in</a></p>
+      </form>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="simweb.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

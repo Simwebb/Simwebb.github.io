@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — simweb</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237c5cff'/%3E%3C/svg%3E" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' data:; connect-src 'self' https://*.supabase.co; font-src 'self' data:;">
+</head>
+<body>
+  <header id="topnav" class="topnav"></header>
+  <main class="page">
+    <div class="auth-wrap">
+      <form class="auth-card" id="loginForm" novalidate>
+        <h1 class="title">Welcome back</h1>
+        <p class="sub">Sign in to publish your hallucinated sites.</p>
+
+        <div class="field">
+          <label class="label" for="li_email">Email</label>
+          <input id="li_email" class="input" type="email" name="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label class="label" for="li_password">Password</label>
+          <input id="li_password" class="input" type="password" name="password" autocomplete="current-password" required />
+        </div>
+
+        <div class="btn-row">
+          <button class="btn primary btn-block" id="submitBtn" type="submit">Log in</button>
+        </div>
+        <p class="help err" id="errMsg" hidden></p>
+        <p class="swap">No account yet? <a href="signup.html">Sign up</a></p>
+      </form>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="simweb.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

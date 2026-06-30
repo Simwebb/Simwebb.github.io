@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project — simweb</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237c5cff'/%3E%3C/svg%3E" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' data:; connect-src 'self' https://*.supabase.co; font-src 'self' data:;">
+</head>
+<body>
+  <header id="topnav" class="topnav"></header>
+  <main class="page" style="padding:0;height:calc(100vh - 53px);">
+    <div class="project-layout" id="projectLayout" hidden>
+      <div class="project-stage">
+        <iframe id="frame" sandbox="allow-scripts allow-forms allow-modals allow-popups allow-same-origin"
+                srcdoc="about:blank" title="Preview"></iframe>
+      </div>
+      <aside class="project-side" id="side">
+        <div class="side-section">
+          <h2 class="proj-title" id="projTitle">…</h2>
+          <p class="proj-desc" id="projDesc"></p>
+          <div class="proj-owner" id="projOwner"></div>
+          <div class="proj-stats" id="projStats"></div>
+        </div>
+        <div class="side-section">
+          <div class="actionbar">
+            <button class="btn ghost" id="likeBtn"><span class="icn">♥</span><span id="likeLabel">Like</span></button>
+            <button class="btn ghost" id="favBtn"><span class="icn">★</span><span id="favLabel">Favorite</span></button>
+            <button class="btn ghost" id="editBtn" hidden><span class="icn">✎</span><span>Edit</span></button>
+            <button class="btn ghost" id="viewSrcBtn"><span class="icn">{ }</span><span>Source</span></button>
+            <button class="btn ghost" id="shareBtn"><span class="icn">⤴</span><span>Share</span></button>
+          </div>
+        </div>
+        <div class="side-section" style="flex:1;min-height:0;padding:0;">
+          <h3 style="padding:12px 16px 6px 16px;margin:0;">Versions</h3>
+          <div class="versions" id="versions"></div>
+        </div>
+      </aside>
+    </div>
+    <div class="project-loading" id="loadingState">Loading…</div>
+    <div class="project-error" id="errorState" hidden></div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="simweb.js"></script>
+  <script src="project.js"></script>
+</body>
+</html>

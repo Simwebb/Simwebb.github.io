@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account — simweb</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' data:; connect-src 'self' https://*.supabase.co; font-src 'self' data:;">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <header id="topnav" class="topnav"></header>
+  <main class="page">
+    <div class="auth-wrap">
+      <div class="auth-card" style="max-width: 560px">
+        <div id="pendingBanner" class="pending-banner" hidden>
+          <div class="grow">
+            <div class="pend-title">Account scheduled for deletion</div>
+            <div class="pend-text">
+              Your account, <b id="pendCountUsername">…</b>, and
+              <b id="pendProjectCount">…</b> project<span id="pendProjsPlural">s</span>
+              will be permanently deleted in
+              <span class="countdown" id="pendCountdown">…</span>.
+              You can still sign back in during this window to restore everything.
+            </div>
+          </div>
+          <button class="btn btn-restore" id="restoreBtn">Restore now</button>
+        </div>
+
+        <h1 class="title">Account settings</h1>
+        <p class="sub" id="who">…</p>
+
+        <div class="field">
+          <span class="label">Username (immutable)</span>
+          <input class="input" id="usernameInput" readonly />
+        </div>
+        <div class="field">
+          <span class="label">Email</span>
+          <input class="input" id="emailInput" readonly />
+        </div>
+        <div class="field">
+          <span class="label">Display name</span>
+          <input class="input" id="displayInput" maxlength="64" />
+          <span class="help">How your name appears next to your projects (1 – 64 chars).</span>
+        </div>
+        <div class="field">
+          <span class="label">Bio (optional)</span>
+          <textarea class="input" id="bioInput" rows="3" maxlength="240" style="resize:vertical;font-family:inherit;"></textarea>
+          <span class="help"><span id="bioCount">0</span> / 240</span>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn primary" id="saveBtn">Save profile</button>
+          <span class="grow"></span>
+          <button class="btn ghost" id="logoutBtn">Log out</button>
+        </div>
+        <p class="help" id="saveMsg"></p>
+
+        <div class="danger-zone">
+          <h3>Danger zone</h3>
+          <p>
+            Deleting your account hides your projects from the public feed
+            immediately, but keeps them on disk for <b>14 days</b>.
+            After that window, your account and every project you own are
+            permanently purged and cannot be recovered.
+          </p>
+          <div class="danger-actions">
+            <button class="btn btn-danger" id="deleteBtn">Delete account</button>
+          </div>
+          <p class="help" id="dangerMsg"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Type-to-confirm prompt -->
+  <dialog id="confirmDlg" class="ws-dialog">
+    <form method="dialog" class="ws-dialog-card" style="width: min(440px, 92vw)">
+      <header class="ws-dialog-head">
+        <h3>Delete account</h3>
+        <button class="ws-iconbtn small" value="close">×</button>
+      </header>
+      <div style="padding: 14px;">
+        <p style="margin: 0 0 8px 0; color: var(--txt-dim); font-size:13.5px;">
+          Type your username <b id="confirmUsername" style="color:var(--txt)">…</b> to confirm.
+          Your account + projects will be hid immediately and permanently
+          deleted in 14 days.
+        </p>
+        <input class="input" id="confirmInput" maxlength="64" placeholder="your username…" />
+        <div class="btn-row" style="margin-top: 14px;">
+          <button class="btn ghost" value="close" type="submit">Cancel</button>
+          <span class="grow"></span>
+          <button class="btn btn-danger" id="confirmDeleteBtn" type="button">Delete</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="simweb.js"></script>
+  <script src="account.js"></script>
+</body>
+</html>
